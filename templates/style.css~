@@ -1,0 +1,11 @@
+<style>
+
+body{
+background:white url("{% static 'gray-white-concrete.jpg' %}") no-repeat right bottom;
+}
+
+
+
+
+
+</style>

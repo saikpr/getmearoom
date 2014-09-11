@@ -1,0 +1,15 @@
+<style>
+
+ body{
+background:url("{% static 'gray-white-concrete.jpg' %}");
+}
+
+#welcome{
+color:#0F1;
+
+}
+
+
+
+
+</style>

@@ -1,0 +1,34 @@
+
+{% extends "base.html" %}
+{% load staticfiles %}
+
+
+{% comment %}
+  Main page of django_consultant's website.
+{% endcomment %}
+
+{% block head %}
+  <title></title>
+
+
+
+{% endblock %}
+
+{% block body  %}
+ <div class="container-fluid">
+
+	<section style="margin:10% 40% 0% 40%;text-align:center;">
+      		<p id="welcome" style="font-size:200%;font-family:Comic Sans MS;">Welcome,Amigo<br><span style="font-size:80%;">to the<br> 	Hostel Room Allocation Portal<br><span>IIT BHU</span></span></p>
+	<p><button id="enter">Enter</button></p>
+</section>
+
+
+<div>
+<script type="text/javascript">
+    document.getElementById("enter").onclick = function () {
+        location.href = "/portal/";
+    };
+</script>  
+
+
+{% endblock %}
