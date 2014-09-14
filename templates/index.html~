@@ -8,7 +8,7 @@
 {% endcomment %}
 
 {% block head %}
-  <title></title>
+  <title>  </title>
 
 
 
@@ -16,12 +16,15 @@
 
 {% block body  %}
  <div class="container-fluid">
-
+	<div class="row"
+		<div class="col-md-4 col-md-offset-4">
 	<section style="margin:10% 40% 0% 40%;text-align:center;">
-      		<p id="welcome" style="font-size:200%;font-family:Comic Sans MS;">Welcome,Amigo<br><span style="font-size:80%;">to the<br> 	Hostel Room Allocation Portal<br><span>IIT BHU</span></span></p>
-	<p><button id="enter">Enter</button></p>
-</section>
-
+      		<p id="welcome" style="font-size:200%;">Welcome,Amigo<br><span style="font-size:80%;">to the<br> Room Allocation<br> Portal<br><span><br><br><br>IIT BHU</span></span></p>
+		<p><button type="button" style="background-color:#FFF;color:#00F"class="btn btn-primary" id="enter">Enter</button></p>
+	
+			</section>
+	</div>
+	</div>
 
 <div>
 <script type="text/javascript">

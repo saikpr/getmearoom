@@ -1,7 +1,7 @@
 <style>
 
  body{
-background:url("{% static 'gray-white-concrete.jpg' %}");
+background:url("{% static 'key.jpg' %}");
 }
 
 #welcome{

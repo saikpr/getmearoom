@@ -1,0 +1,239 @@
+{% extends "base1.html" %}
+{% comment %}
+  Main page to authenticate users.
+{% endcomment %}
+
+{% block head %}
+  <title>Django Consultants | Login</title>
+<style>
+#back{
+background: rgb(233,246,253); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(233,246,253,1) 0%, rgba(211,238,251,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(233,246,253,1)), color-stop(100%,rgba(211,238,251,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(233,246,253,1) 0%,rgba(211,238,251,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(233,246,253,1) 0%,rgba(211,238,251,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(233,246,253,1) 0%,rgba(211,238,251,1) 100%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(233,246,253,1) 0%,rgba(211,238,251,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e9f6fd', endColorstr='#d3eefb',GradientType=0 ); /* IE6-9 */
+
+
+}
+#navbar
+{
+background: rgb(239,239,239); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(239,239,239,1) 1%, rgba(252,252,252,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(1%,rgba(239,239,239,1)), color-stop(100%,rgba(252,252,252,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(239,239,239,1) 1%,rgba(252,252,252,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(239,239,239,1) 1%,rgba(252,252,252,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(239,239,239,1) 1%,rgba(252,252,252,1) 100%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(239,239,239,1) 1%,rgba(252,252,252,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#efefef', endColorstr='#fcfcfc',GradientType=0 ); /* IE6-9 */
+
+}
+#button{
+border:1px solid #0066FF;
+color:#0066FF;
+background-color:#FFF;
+
+}
+#link{
+cursor:pointer;}
+</style>
+{% endblock %}
+
+{% block body %}
+	
+<div class="container-fluid">  
+		<nav class="navbar navbar-fixed-top"  id="navbar" role="navigation" style="background-color:#FFF;border-bottom:2px solid #1975D1
+">
+			  <div class="navbar-header">
+     				 <a class="navbar-brand" href="/portal/">Room Allocation</a>
+   				</div>	
+				<div class="pull-right"><a id="link" class="navbar-brand" onclick="show(1);">How To Apply</a><span class="navbar-text">|</span><a id="link"  class="navbar-brand" onclick="show(2);">About Us</a><span class="navbar-text">|</span><a id="link"  class="navbar-brand" onclick="show(3);">Contact</a>
+				</div>
+		</nav>  	
+		
+
+
+		<div class="row" style="padding-top:7%">
+		<div class="col-md-9" >
+			<div style="border:1px solid #5C8AE6
+;border-left:1px solid #FFF;border-top:1px solid #FFF;box-shadow: 1px 3px 3px;margin:1%;border-radius:4px">
+		<div  style="height:550px;overflow-y:auto;margin:1%">			
+		<div id="show1" style="display:block">		
+		<h1 >How To Apply</h1>
+		<hr style="margin:1%">
+			<div style="margin:1%">			
+				<p>1.Test DAta</p>
+<p>1.Test DAta</p>
+			<p>1.Test DAta</p>
+			<p>1.Test DAta</p>
+			<p>1.Test DAta</p>
+			<p>1.Test DAta</p>
+			<p>1.Test DAta</p>
+			<p>1.Test DAta</p>
+			<p>1.Test DAta</p>
+			<p>1.Test DAta</p>
+			<p>1.Test DAta</p>
+			<p>1.Test DAta</p>
+			<p>1.Test DAta</p>
+			<p>1.Test DAta</p>
+			<p>1.Test DAta</p>
+			<p>1.Test DAta</p>
+			<p>1.Test DAta</p>
+			<p>1.Test DAta</p>
+			<p>1.Test DAta</p>
+			<p>1.Test DAta</p>
+			<p>1.Test DAta</p>
+			<p>1.Test DAta</p>
+			<p>1.Test DAta</p>
+			
+			
+			</div>
+
+			</div>
+<div id="show2" style="display:none"> 
+<h1 >About Us</h1>
+		<hr style="margin:1%">
+			<div style="margin:1%">			
+				<p>1.Test DAta</p>
+			<p>1.Test DAta</p>
+			<p>1.Test DAta</p>
+			<p>1.Test DAta</p>
+			<p>1.Test DAta</p>
+			<p>1.Test DAta</p>
+			<p>1.Test DAta</p>
+			<p>1.Test DAta</p>
+		
+			
+			
+			</div>
+</div>
+<div id="show3" style="display:none">
+<h1 >Contact Us</h1>
+		<hr style="margin:1%">
+			<div style="margin:1%">			
+				<p>1.Test DAta</p>
+			<p>1.Test DAta</p>
+			<p>1.Test DAta</p>
+			<p>1.Test DAta</p>
+			<p>1.Test DAta</p>
+			<p>1.Test DAta</p>
+			<p>1.Test DAta</p>
+			<p>1.Test DAta</p>
+		
+			
+			
+			</div>
+</div>
+
+		</div>
+</div>		
+</div>
+	
+
+		<div class="col-md-3 "  >	
+			<div class="row" style="margin:4%">
+				<div class="col-md-12">		
+		<section  style="border:1px solid #59ACFF
+;border-radius:5px;">
+		<div  id="back" style="padding:4%;background-color:#85C2FF
+
+">
+		Login			
+		</div>
+    	{% if form.errors %}
+      <p>Your username and password didn't match</p>
+    {% endif %}
+     
+	<div style="padding:4%;">
+	
+    <form id="t" method="post" action="/login/">
+ 
+	{% csrf_token %}
+      <p>
+        <label for="id_username">Username:</label>
+        <input type="text" class="form-control" name="username"/>
+       
+</p>
+      <p>
+        <label for="id_password">OTP:</label>
+         <input type="password" class="form-control" name="password"/>
+      </p>
+      {% if next %}
+        <input type="hidden" name="next" value="{{ next }}" />
+      {% else %}
+        <input type="hidden" name="next" value="/portal/" />
+      {% endif %}
+      <input class="btn btn-primary" id="button" type="submit" value="login" />
+<span class="float-right"><a href=#>get OTP</a> </span>		
+</form>
+	</div>  	
+
+</section>
+	</div>
+	</div>	
+<hr>
+			<div class="row" style="margin:4%">
+				<div class="col-md-12">
+				
+				<section style="border:1px solid #59ACFF
+;border-radius:5px;">
+		<div  id="back" style="padding:4%;background-color:#85C2FF
+
+">
+		Register			
+	
+</div>
+    	
+     
+	<div style="padding:4%;">
+	
+    <form method="post" action="/signup/">
+
+<p>{{error}}</p>      
+
+      <p>
+        <label for="id_email">Email:</label>
+        <input type="text" class="form-control" name="email"/>
+       
+</p>
+      <p>
+        <label for="id_otp">OTP:</label>
+         <input type="password" class="form-control" name="otp"/>
+      </p>
+      {% if next %}
+        <input type="hidden" name="next" value="{{ next }}" />
+      {% else %}
+        <input type="hidden" name="next" value="/portal/" />
+      {% endif %}
+      <input class="btn btn-primary" id="button" type="submit" value="Register" />
+	
+	</form>
+	</div>  	
+
+</section>
+				</div>
+			</div>
+</div>
+	</div>
+</div>
+<script>
+function show(a){
+
+var temp1=document.getElementById('show1');
+var temp2=document.getElementById('show2');
+var temp3=document.getElementById('show3');
+temp1.style.display='none';
+temp2.style.display='none';
+temp3.style.display='none';
+if(a==1)
+temp1.style.display='block';
+else if(a==2)
+temp2.style.display='block';
+else
+temp3.style.display='block';
+}
+
+</script>
+{% endblock %}

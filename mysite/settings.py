@@ -35,7 +35,7 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles','polls','portal',
+    'django.contrib.staticfiles','polls','portal','mysite',
      	
 )
 
@@ -69,7 +69,7 @@ DATABASES = {
     }
 }
 TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, 'templates'),
+    os.path.join(BASE_DIR, 'templates'),os.path.join(BASE_DIR, 'templates/registration'),
 )
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/

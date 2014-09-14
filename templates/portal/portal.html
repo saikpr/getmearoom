@@ -1,23 +1,42 @@
-{% extends "base.html" %}
+{% extends "base1.html" %}
 {% comment %}
   This is the main template for all portal pages.
 {% endcomment %}
 
 {% block head %}
-  <title>Django Consultants | {% block title %}{% endblock %}</title>
+  <title> {% block title %}{% endblock %}</title>
+<style>
+#navbar
+{
+background: rgb(239,239,239); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(239,239,239,1) 1%, rgba(252,252,252,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(1%,rgba(239,239,239,1)), color-stop(100%,rgba(252,252,252,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(239,239,239,1) 1%,rgba(252,252,252,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(239,239,239,1) 1%,rgba(252,252,252,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(239,239,239,1) 1%,rgba(252,252,252,1) 100%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(239,239,239,1) 1%,rgba(252,252,252,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#efefef', endColorstr='#fcfcfc',GradientType=0 ); /* IE6-9 */
+
+}
+</style>
 {% endblock %}
 
 {% block body %}
   <header>
-    <h1>Django Consultants | Web Portal</h1>
+   
   </header>
-
-  <section>
-    <ul>
-      <li><a href="/">home</a></li>
-      <li><a href="/logout/">logout</a></li>
-    </ul>
-  </section>
+<div class="container-fluid">  
+		<nav class="navbar navbar-fixed-top"  id="navbar" role="navigation" style="background-color:#FFF;border-bottom:2px solid #1975D1
+">
+			  <div class="navbar-header">
+     				 <a class="navbar-brand" href="/portal/">Room Allocation</a>
+   				</div>	
+				<div class="pull-right"><a id="logout" href="/logout/" class="navbar-brand">Logout</a>
+				</div>
+		</nav>  	
+		
+</div>
+ 
 
   {% block content %}{% endblock %}
 
