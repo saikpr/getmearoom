@@ -10,3 +10,9 @@ def portal_main_page(request):
     them to the login page.
     """
     return render_to_response('portal/index.html',{'user':request.user})
+def staff_page(request):
+	return render_to_response('portal/staff.html',{'user':request.user})
+def complaint_page(request):
+	return render_to_response('portal/complaint.html',{'user':request.user})
+def suggestion_page(request):
+	return render_to_response('portal/status.html',{'user':request.user})

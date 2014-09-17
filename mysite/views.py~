@@ -24,7 +24,7 @@ def signup_page(request):
 		try:		
 			user=User.objects.create_user(username=AddEmail,password=AddPass)
 			user.save()        
-			userLog=authenticate(username=AddEmail, password=AddPass)		
+			userLog=authenticate(username=AddEmail, password=AddPass,email=AddEmail)		
 			login(request,userLog)		
 			return HttpResponseRedirect('/portal/')		
 		except:

@@ -1,0 +1,83 @@
+{% extends "portal/portal.html" %}
+{% comment %}
+  Main page of the portal.
+{% endcomment %}
+
+{% block title %}
+  
+{% endblock %}
+{% block style %}
+<style>
+#table{
+text-align:center;
+}
+#col{
+text-align:center;
+
+}
+</style>
+{% endblock %}
+
+
+
+
+  {% block nav %}
+ <div class="navbar-brand pull-right">Welcome, {{user}}</div>
+{% endblock %}
+
+
+	
+{% block content %}
+<div class="container-fluid" style="padding-top:80px;margin-left:2%;margin-right:2%">
+<table id="table" class="table table-striped table-bordered">
+<caption>No Dues Details of Students</caption>	
+
+<thead >
+	<tr>
+		<th id="col"  width=4%>SNo.</th>
+		<th id="col" width=24%>Name Of the Student</th>
+		<th id="col" width=24%>Hostel</th>
+		<th id="col" width=24%>No dues Status</th>
+		<th id="col" width=24%>Change it</th>
+
+
+
+	</tr>
+</thead>
+<tr>
+	<td>1</td>
+<td >Amitosh Anand</td>
+<td>Dhanrajgiri</td>
+<td>Clear</td>
+<td><button class="btn btn-default" type="button">Change</button></td>
+
+</tr>	
+
+<tr>
+	<td>2</td>
+<td >Shivanju Awasthi</td>
+<td>Dhanrajgiri</td>
+<td>Clear</td>
+<td><button class="btn btn-default" type="button">Change</button></td>
+
+</tr>	
+<tr>
+	<td>3</td>
+<td >Tanay Sharma</td>
+<td>Dhanrajgiri</td>
+<td>Clear</td>
+<td><button class="btn btn-default" type="button">Change</button></td>
+
+</tr>	
+<tr>
+	<td>4</td>
+<td >Sainyam Kapoor</td>
+<td>Dhanrajgiri</td>
+<td>Due</td>
+<td><button class="btn btn-default" type="button">Change</button></td>
+
+</tr>	
+</table>
+</div>
+
+{% endblock %}

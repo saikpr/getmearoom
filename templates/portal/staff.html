@@ -1,0 +1,62 @@
+{% extends "portal/portal.html" %}
+{% comment %}
+  Main page of the portal.
+{% endcomment %}
+
+{% block title %}
+  
+{% endblock %}
+{% block style %}
+<style>
+#table{
+text-align:center;
+}
+#col{
+text-align:center;
+
+}
+</style>
+{% endblock %}
+
+
+
+
+  {% block nav %}
+ <div class="navbar-brand pull-right">Welcome, {{user}}</div>
+{% endblock %}
+
+
+	
+{% block content %}
+<div class="container-fluid" style="padding-top:80px;margin-left:2%;margin-right:2%">
+<table id="table" class="table table-striped table-bordered">
+<caption>Details Of Staff</caption>	
+
+<thead >
+	<tr>
+		<th id="col"  width=4%>SNo.</th>
+		<th id="col" width=24%>Name</th>
+		<th id="col" width=24%>Occupation</th>
+		<th id="col" width=24%>Hostel</th>
+		<th id="col" width=24%>Contact</th>
+
+
+
+	</tr>
+</thead>
+<tr>
+	<td>1</td>
+<td >Mr.Manish Kumar</td>
+<td>Warden</td>
+<td>Dhanrajgiri</td>
+<td>***********</td>
+
+</tr>	
+
+
+
+
+</table>
+</div>
+
+{% endblock %}

@@ -153,12 +153,12 @@ cursor:pointer;}
 	{% csrf_token %}
       <p>
         <label for="id_username">Username:</label>
-        <input type="text" class="form-control" name="username"/>
+        <input type="text" class="form-control" name="username" value=""/>
        
 </p>
       <p>
         <label for="id_password">OTP:</label>
-         <input type="password" class="form-control" name="password"/>
+         <input type="password" class="form-control" name="password" value=""/>
       </p>
       {% if next %}
         <input type="hidden" name="next" value="{{ next }}" />
@@ -190,7 +190,7 @@ cursor:pointer;}
 	<div style="padding:4%;">
 	
     <form method="post" action="/signup/">
-
+{% csrf_token %}
 <p>{{error}}</p>      
 
       <p>

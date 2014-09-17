@@ -5,6 +5,17 @@
 
 {% block head %}
   <title> {% block title %}{% endblock %}</title>
+{% block style %}
+<style>
+li:hover ul {
+    display: block;
+}
+li {
+    display: inline;
+    position: relative;
+}
+</style>
+{% endblock %}
 {% endblock %}
 
 {% block body %}
@@ -15,18 +26,23 @@
 		<nav class="navbar navbar-fixed-top"  id="navbar" role="navigation" style="background-color:#FFF;border-bottom:2px solid #1975D1
 ">
 			  <div class="navbar-header">
-     				 <a class="navbar-brand" href="/portal/">Room Allocation</a>
-   				</div>	
+     				 <a class="navbar-brand" href="/portal/">Room Allocation</a><span class="navbar-text">|</span>	
+				<a id="staff" href="/portal/staff/" class="navbar-brand">Staff</a>   				
+					<span class="navbar-text">|</span>	
+				<a id="complaint" href="/portal/complaint/" class="navbar-brand">Complaint</a><span class="navbar-text">|</span>   <a id="complaint" href="/portal/suggestion/" class="navbar-brand">Complaint</a>
+	
+     
+  </div>
+				
 				<div class="pull-right"><a id="logout" href="/logout/" class="navbar-brand">Logout</a>
+				
 				</div>
-		</nav>  	
+				
+	
+			{% block nav %}{% endblock %}			
+				</nav>  	
 		
 </div>
- 
-
   {% block content %}{% endblock %}
 
-  <footer>
-    <span>&copy; 2010, Django Consultants</span>
-  </footer>
 {% endblock %}

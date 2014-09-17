@@ -7,27 +7,25 @@
   <title> {% block title %}{% endblock %}</title>
 {% block style %}
 <style>
-li:hover ul {
-    display: block;
-}
-li {
-    display: inline;
-    position: relative;
+#success{
+margin-top:15%;
+margin-right:30%;
+margin-left:35%;
+border:1px solid;
+border-radius:6px;
+padding:3%;
 }
 </style>
 {% endblock %}
 {% endblock %}
-
 {% block body %}
-  <header>
-   
-  </header>
-<div class="container-fluid">  
-		<nav class="navbar navbar-fixed-top"  id="navbar" role="navigation" style="background-color:#FFF;border-bottom:2px solid #1975D1
+
+
+{% block content %}
+<nav class="navbar navbar-fixed-top"  id="navbar" role="navigation" style="background-color:#FFF;border-bottom:2px solid #1975D1
 ">
 			  <div class="navbar-header">
-     				 <a class="navbar-brand" href="/portal/">Room Allocation</a><span class="navbar-text">|</span>	
-				<a id="staff" href="/portal/staff/" class="navbar-brand">Staff</a>   				
+     				<a id="staff" href="/portal/staff/" class="navbar-brand">Staff</a>   				
 					<span class="navbar-text">|</span>	
 				<a id="complaint" href="/portal/complaint/" class="navbar-brand">Complaint</a><span class="navbar-text">|</span>   <a id="complaint" href="/portal/suggestion/" class="navbar-brand">Suggestion</a>
 	
@@ -41,8 +39,15 @@ li {
 	
 			{% block nav %}{% endblock %}			
 				</nav>  	
-		
-</div>
-  {% block content %}{% endblock %}
 
+<div id="success">
+	
+	<button type="button" class="btn btn-primary">Book Room</button><span style="margin-left:150px">	
+	<button type="button" class="btn btn-primary">Check Status</button></span>	
+
+
+</div>
+
+
+{% endblock %}
 {% endblock %}

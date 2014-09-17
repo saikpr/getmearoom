@@ -7,7 +7,8 @@ urlpatterns = patterns('',
 #login/logout
 (r'^login/$','django.contrib.auth.views.login'),
 (r'^logout/$',logout_page),
-
+#signup
+(r'^signup/$',signup_page),
 #web portal
 (r'^portal/',include('portal.urls')),
  # Serve static content.

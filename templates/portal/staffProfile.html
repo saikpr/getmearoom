@@ -1,0 +1,56 @@
+{% extends "portal/portal.html" %}
+{% comment %}
+  Main page of the portal.
+{% endcomment %}
+
+{% block title %}
+  
+{% endblock %}
+{% block style %}
+<style>
+#infoBlock{
+border:1px solid #0B2161;
+border-radius:5px;
+box-shadow:1px 2px 0px ;
+}
+#line{
+margin-top:-2px;
+border-color:#5882FA;
+box-shadow:0px 1px 1px;
+}
+</style>
+{% endblock %}
+
+
+
+
+  {% block nav %}
+ <div class="navbar-brand pull-right">Welcome, {{user}}</div>
+{% endblock %}
+	
+{% block content %}
+<div class="container-fluid" style="padding-top:80px;">
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3" style="margin-top:5%">
+			<div class="row">
+				<div class="col-md-12">			
+					<div id="infoBlock" style="height:150px;padding:1%">
+						<label>Name of the Staff Member</label>
+						<span class="pull-right">Hostel</span>
+				
+						<hr id="line">
+						<div id="staffDetails"><p>Staff Details</p>
+						</div>
+					</div>
+				</div>
+			</div>
+<hr id="line" style="margin-top:20px;border-color:#585858;">
+	
+
+
+		</div>
+	</div>
+</div>
+
+
+{% endblock %}

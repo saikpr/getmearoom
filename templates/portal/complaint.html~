@@ -1,0 +1,97 @@
+{% extends "portal/portal.html" %}
+{% comment %}
+  Main page of the portal.
+{% endcomment %}
+
+{% block title %}
+  
+{% endblock %}
+{% block style %}
+<style>
+</style>
+{% endblock %}
+
+
+
+
+  {% block nav %}
+ <div class="navbar-brand pull-right">Welcome, {{user}}</div>
+{% endblock %}
+	
+{% block content %}
+<div class="container-fluid" style="padding-top:80px;">
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+			<div class="form-group">	
+				<form >		
+		
+		
+					<textarea  style="margin-bottom:5px;" type="text" class="form-control" placeholder="Please write your suggestion or compalints here"></textarea>
+					<button class="btn btn-default pull-right" type="submit">POST</button>
+				</form>
+			</div>
+		</div>
+
+
+	</div>
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3" style="border-right:1px solid #5882FA;border-left:1px solid #5882FA;box-shadow:1px 1px 1px;margin-top:2%">
+			<ul style="padding:10px;list-style-type:none">
+				<li>
+					<div style="padding:2%">
+						<p>bdsbjbdvsjbjdvbjbvjbvjbjvbjvbjbvdjhbvhjbvjdbhjvdbhjbvdj</p>
+					<br>
+					<p class="pull-right" style="color:#610B38">{{user}}</p>
+					</div>
+				
+				</li>
+				<hr style="border-color:#8258FA;box-shadow:0px 1px 1px">	
+			
+				<li>
+					<div style="padding:2%">
+						<p>bdsbjbdvsjbjdvbjbvjbvjbjvbjvbjbvdjhbvhjbvjdbhjvdbhjbvdj</p>
+					<br>
+					<p class="pull-right" style="color:#610B38">{{user}}</p>
+					</div>
+				
+				</li>
+				<hr style="border-color:#8258FA;box-shadow:0px 1px 1px">	
+			
+<li>
+					<div style="padding:2%">
+						<p>bdsbjbdvsjbjdvbjbvjbvjbjvbjvbjbvdjhbvhjbvjdbhjvdbhjbvdj</p>
+					<br>
+					<p class="pull-right" style="color:#610B38">{{user}}</p>
+					</div>
+				
+				</li>
+				<hr style="border-color:#8258FA;box-shadow:0px 1px 1px">	
+
+		<li>
+					<div style="padding:2%">
+						<p>bdsbjbdvsjbjdvbjbvjbvjbjvbjvbjbvdjhbvhjbvjdbhjvdbhjbvdj</p>
+					<br>
+					<p class="pull-right" style="color:#610B38">{{user}}</p>
+					</div>
+				
+				</li>
+				<hr style="border-color:#8258FA;box-shadow:0px 1px 1px">	
+<li>
+					<div style="padding:2%">
+						<p>bdsbjbdvsjbjdvbjbvjbvjbjvbjvbjbvdjhbvhjbvjdbhjvdbhjbvdj</p>
+					<br>
+					<p class="pull-right" style="color:#610B38">{{user}}</p>
+					</div>
+				
+				</li>
+				<hr style="border-color:#8258FA;box-shadow:0px 1px 1px">	
+
+
+</ul>		
+		
+		</div>
+	</div>	
+</div>
+
+
+{% endblock %}

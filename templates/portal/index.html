@@ -5,12 +5,174 @@
 {% endcomment %}
 
 {% block title %}
-  Portal
+  
+{% endblock %}
+{% block style %}
+ 
+<style>
+
+#navbar
+{
+background: rgb(239,239,239); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(239,239,239,1) 1%, rgba(252,252,252,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(1%,rgba(239,239,239,1)), color-stop(100%,rgba(252,252,252,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(239,239,239,1) 1%,rgba(252,252,252,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(239,239,239,1) 1%,rgba(252,252,252,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(239,239,239,1) 1%,rgba(252,252,252,1) 100%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(239,239,239,1) 1%,rgba(252,252,252,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#efefef', endColorstr='#fcfcfc',GradientType=0 ); /* IE6-9 */
+
+}
+
+#image{
+position:relative;
+
+}
+#text{
+
+position:absolute;
+    top:61px;
+   width:800px;
+padding-right:40px;
+padding-left:40px;
+font-size:22px;
+text-align:center;
+
+}
+#imageBlock{
+border:1px solid #610B21;
+border-radius:6px;
+box-shadow: 2px 2px 2px;
+}
+#room{
+border:2px solid #610B21;
+height:470px;
+box-shadow: 2px 2px 2px;
+border-radius:6px;
+}
+#roomDetails{
+padding:3%;
+
+
+}
+#grab{
+
+background-color:#D7DF01;
+border-color:#DF3A01;
+color:
+
+}
+#grab:hover{
+font-size:120%;
+
+}
+</style>
 {% endblock %}
 
+
+
+
+  {% block nav %}
+ <div class="navbar-brand pull-right">Welcome, {{user}}</div>
+{% endblock %}
+	
 {% block content %}
-  <section>
-    <h2>Welcome, {{ user}}</h2>
-    <p>This is the main page of the web portal.</p>
-  </section>
+<div class="container-fluid" style="padding:80px">
+	<div class="row">
+		<div class="col-md-offset-2">		
+			<div style="margin-left:auto;margin-right:auto">	
+				<div id="image" >
+  				<img alt="" src="/static/hr.jpg" />
+				</div>	  					
+				<div id="text" >
+    					<p>No Notifications</p>
+    			
+  				</div>
+				
+			</div>
+
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-5">
+			
+			<div id="room">
+				<div id="roomDetails">
+					<div>				
+					<label>Hostel:</label><span>
+						<select class="form-control">
+							<option>Dhanrajgiri</option>						
+						</select>		
+						</span>		
+					
+
+					</div>
+					<br>
+				
+	<div class="row">
+		  <div class="col-md-10">
+			<div class="form-group">
+					<input type="text" class="form-control" placeholder="Search for availability by room no.">
+			</div>
+		</div>				
+		<div class="col-md-2">
+<span><button style="margin-left:-20px;"class="btn  " type="submit"><i class="glyphicon glyphicon-search"></i></button>				
+				</span>
+
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-12">
+		</div>
+	</div>
+
+	<h4>Preferences</h4>
+	<hr>
+	<form>
+		<div class="row">
+		<div class="col-md-6 form-group">
+		<label>Preference #1:</label>
+		</div>
+		<div class="col-md-6 form-group">
+		<input class="form-control" placeholder="Room No.">		
+		</div>
+
+	</div>
+	<div class="row">	
+		<div class="col-md-6 form-group">
+		<label>Preference #2:</label>
+		</div>
+		<div class="col-md-6 form-group">
+		<input class="form-control" placeholder="Room No.">		
+		</div>
+	</div>
+	<button id="grab" type="submit" class="btn btn-default" >Grab It</button>
+	</form>
+
+</div>		
+	</div>
+
+			
+	</div>
+
+		<div class="col-md-7">
+			<div id="imageBlock">
+				<img alt="No Preview Available" src="/static/key.jpg" height=470px width=653px;/>			
+			</div>	
+
+
+		</div>
+	
+	</div>
+
+
+
+<footer>
+    <span style="text-align:center">&copy; 2014,IIT BHU </span>
+  </footer>
+</div>	
+
+
 {% endblock %}
