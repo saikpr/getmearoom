@@ -16,11 +16,15 @@
 
 {% block body  %}
  <div class="container-fluid">
-	<div class="row"
-		<div class="col-md-4 col-md-offset-4">
-	<section style="margin:10% 40% 0% 40%;text-align:center;">
-      		<p id="welcome" style="font-size:200%;">Welcome,Amigo<br><span style="font-size:80%;">to the<br> Room Allocation<br> Portal<br><span><br><br>IIT BHU</span></span></p>
-		<p><button type="button" style="background-color:#FFF;color:#00F"class="btn btn-primary" id="enter">Enter</button></p>
+	
+<div class="row">
+<div class="col-md-4 col-md-offset-4">
+	<section id="text" style="margin-left:25%;margin-top:32%">
+      		<p id="welcome" style="font-size:200%;">Welcome,Amigo<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="margin-right:50%;font-size:80%;">to the<br>&nbsp;&nbsp; Room Allocation<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Portal<br><span><img style="margin-left:8%;margin-right:10%" src="/static/images/logo.gif" height=150px width=150px>
+
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IIT BHU</span></span></p>
+		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" style="background-color:#FFF;color:#00F"class="btn btn-primary" id="enter">Enter</button></p>
 	
 			</section>
 	</div>
@@ -28,10 +32,42 @@
 
 <div>
 <script type="text/javascript">
-    document.getElementById("enter").onclick = function () {
-        location.href = "/portal/";
-    };
+    document.getElementById("enter").onclick=function (){
+$('body').fadeOut(3000,function (){
+
+location.href = "/portal/";
+
+
+});
+};
+//var snd = new Audio("/static/door.wav");
+
+//document.getElementById("enter").onclick = function () {
+        // buffers automatically when created
+//snd.play();
+//$("#enter").hide();
+//$("#text").hide();
+//var animationB=document.getElementById("black");
+//var animationL=document.getElementById("left");
+//var animationR=document.getElementById("right");
+//setTimeout(function(){
+//var button=document.getElementById("switch");
+//button.style.display="block";
+
+//}
+//, 4000);
+//animationL.style.webkitAnimationPlayState="running";
+//animationR.style.webkitAnimationPlayState="running";
+//animationB.style.webkitAnimationPlayState="running";
+
+//location.href = "/portal/";
+   // };
+
+
+
+
 </script>  
+<script src="/static/js/ajax_like.js"></script>
 
 
 {% endblock %}

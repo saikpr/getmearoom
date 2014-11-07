@@ -4,7 +4,7 @@
 {% endcomment %}
 
 {% block head %}
-  <title>Django Consultants | Login</title>
+  <title>Room Allocation|Login</title>
 <style>
 #back{
 background: rgb(233,246,253); /* Old browsers */
@@ -53,11 +53,23 @@ cursor:pointer;}
 				</div>
 		</nav>  	
 		
-
+				
 
 		<div class="row" style="padding-top:7%">
 		<div class="col-md-9" >
-			<div style="border:1px solid #5C8AE6
+
+{% if  error %}
+<div id="error_msg"  class="alert alert-danger alert-dismissable">
+   <button type="button" class="close" data-dismiss="alert" 
+      >
+      &times;
+   </button>
+  <span id="notify_error">{{error}}</span>
+</div>	
+{% else %}
+
+{% endif %}			
+<div style="border:1px solid #5C8AE6
 ;border-left:1px solid #FFF;border-top:1px solid #FFF;box-shadow: 1px 3px 3px;margin:1%;border-radius:4px">
 		<div  style="height:550px;overflow-y:auto;margin:1%">			
 		<div id="show1" style="display:block">		
@@ -157,7 +169,7 @@ cursor:pointer;}
        
 </p>
       <p>
-        <label for="id_password">OTP:</label>
+        <label for="id_password">Password:</label>
          <input type="password" class="form-control" name="password" value=""/>
       </p>
       {% if next %}
@@ -166,7 +178,10 @@ cursor:pointer;}
         <input type="hidden" name="next" value="/portal/" />
       {% endif %}
       <input class="btn btn-primary" id="button" type="submit" value="login" />
-<span class="float-right"><a href=#>get OTP</a> </span>		
+
+<span class="float-right"><a onclick="pass_open()">Forgot Password</a> </span>		
+ 
+
 </form>
 	</div>  	
 
@@ -174,50 +189,145 @@ cursor:pointer;}
 	</div>
 	</div>	
 <hr>
-			<div class="row" style="margin:4%">
-				<div class="col-md-12">
-				
-				<section style="border:1px solid #59ACFF
+<div class="row" style="margin:4%">
+				<div class="col-md-12">		
+		<section  style="border:1px solid #59ACFF
 ;border-radius:5px;">
 		<div  id="back" style="padding:4%;background-color:#85C2FF
 
 ">
-		Register			
+		New User??			
+		</div>
+  <p>Lets sign you Up!!!</p>
+<div class="pull-right"><button class="btn btn-primary" onclick="signUp_open()"id="signUp" >Signup</button>
+</div>	
+ 
+
 	
+
+</section>
+	</div>
+	</div>	
+
 </div>
-    	
+	</div>
+</div>
+
+<div class="modal fade" id="pass_recovery" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"  aria-hidden="true" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Password Recovery</h4>
+      </div>
+	
+	     
+	<div class="modal-body">
+       
+	<input id="roll" class="form-control"  type="text" placeholder="Please enter your username for passowrd recovery">
+	<br>	  
+	<div id="message">
+			{{message}}	
+		</div>
+<div id="progress" style="display:none">
+		<p>Sending mail....</p>  
+		<div   class="progress progress-striped active">
+				
+		 <div class="progress-bar progress-bar-success" role="progressbar" 
+    				  aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" 
+    				  style="width: 100%;">
+     				 <span class="sr-only">100% Complete</span>
+   			</div>
+		</div>	
+</div>	
+		
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button id="recover" type="submit" data-loading-text="Loading..." class="btn btn-primary">Recover</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="sign_up" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"  aria-hidden="true" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">SignUp</h4>
+      </div>
+	
+	     
+	<div class="modal-body">
+       
      
 	<div style="padding:4%;">
 	
     <form method="post" action="/signup/">
 {% csrf_token %}
-<p>{{error}}</p>      
+
+<p></p>      
 
       <p>
         <label for="id_email">Email:</label>
-        <input type="text" class="form-control" name="email"/>
+        <input type="text" class="form-control" value="{{email}}" name="email"/>
        
-</p>
-      <p>
-        <label for="id_otp">OTP:</label>
-         <input type="password" class="form-control" name="otp"/>
+</p>    
+	<p>
+        <label for="id_roll">Roll No.:</label>
+         <input maxlength="10" size=10 type="text" class="form-control" value="{{roll_no}}" name="roll"/>
+      </p>
+	<p>
+        <label for="id_pass">Password:</label>
+         <input type="password" class="form-control"  name="pass"/>
+      </p>
+<p>
+        <label for="id_cpass">Confirm Password:</label>
+         <input type="password" class="form-control" name="cpass"/>
       </p>
       {% if next %}
         <input type="hidden" name="next" value="{{ next }}" />
       {% else %}
         <input type="hidden" name="next" value="/portal/" />
       {% endif %}
-      <input class="btn btn-primary" id="button" type="submit" value="Register" />
+<span class="validation_error">{{ captcha_response }}</span>
+        
+            <script type="text/javascript"
+            src="http://api.recaptcha.net/challenge?k=6LdEWv0SAAAAAN5ytyl3_a3MsxOZkx5sTqA_Eztu">
+            </script>
+            
+            <noscript>
+            <iframe src="http://api.recaptcha.net/noscript?k=6LdEWv0SAAAAAN5ytyl3_a3MsxOZkx5sTqA_Eztu"
+            height="300" width="300" frameborder="0"></iframe><br>
+            <textarea name="recaptcha_challenge_field" rows="3" cols="40">
+            </textarea>
+            <input type="hidden" name="recaptcha_response_field" 
+            value="manual_challenge">
+            </noscript>
 	
-	</form>
+ 
+
+    
+
+
+	
 	</div>  	
 
-</section>
-				</div>
-			</div>
+
+      </div>
+      <div class="modal-footer">
+        <input class="btn btn-primary" id="button" type="submit" value="Register" />
+</form>        
+      </div>
+
+    </div>
+  </div>
 </div>
-	</div>
-</div>
+
 <script>
 function show(a){
 
@@ -234,6 +344,16 @@ temp2.style.display='block';
 else
 temp3.style.display='block';
 }
+function pass_open(){
+
+$('#pass_recovery').modal('show');
+}
+
+function signUp_open(){
+
+$('#sign_up').modal('show');
+}
 
 </script>
+
 {% endblock %}

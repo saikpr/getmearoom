@@ -4,22 +4,131 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <style>
+
 body{
-background:url("{% static 'key.png' %}") no-repeat ;
-background-size: 373px 546px;
-background-position:474px 33px;
+background:url("/static/images/94.jpg") no-repeat center;
+background-size:1320px 830px;
+}
+#left {
+   
+
+margin-right:700px;
+margin-left:0px;  
+ height: 650px;
+    
+    -webkit-animation: myleft 4s; /* Chrome, Safari, Opera */
+    animation: myleft 4s;
+-webkit-animation-iteration-count: 1;
+-webkit-animation-fill-mode: forwards;
+-webkit-animation-play-state: paused;
+
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes myleft {
+    from {margin-left:27%;
+}
+    to {margin-left:0%}
+}
+
+
+#right {
+   
+margin-right:00px;
+margin-left:660px;  
+ 
+
+    height: 650px;
+    
+    -webkit-animation: myright 4s; /* Chrome, Safari, Opera */
+    animation: myright 4s;
+-webkit-animation-iteration-count: 1;
+-webkit-animation-fill-mode: forwards;
+-webkit-animation-play-state: paused;
+
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes myright {
+    from {margin-left:0%;
+}
+    to {margin-left:27%;}
+}
+
+
+
+
+
+
+
+
+
+
+#black {
+    width: 0px;
+    height: 100%;
+    
+    -webkit-animation: myfirst 4s; /* Chrome, Safari, Opera */
+   
+-webkit-animation-iteration-count: 1;
+-webkit-animation-fill-mode: forwards;
+-webkit-animation-play-state: paused;
+animation-name: myfirst;
+animation-duration:4s;
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes myfirst {
+    from {margin-right:700px;
+margin-left:660px;
+width:0px;
+}
+    to {margin-right:100px;
+margin-left:0px;
+width:1318px;}
+}
+
+/* Standard syntax */
+@keyframes myfirst {
+    from {margin-right:700px;
+margin-left:660px
+width:0px;}
+    to {margin-right:100px;
+margin-left:0px
+width:1318px;
+	}
+}
+
+#switch{
+font-size:30px;
+text-align:center;
+color:#FF6;
+position:absolute;
+display:none;
+}
+a:hover{
+cursor:pointer;
+
 }
 
 </style>
 {% block head %}
 
 {% endblock %}
-<link rel="stylesheet" type="text/css" href="/static/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.min.css" />
 
 </head>
-  <body>	
+  <body>
+
+<img id="black" src="/static/black.jpg" width="1" height=100% style="position:absolute;" >
+<a id="switch"><img src="/static/Power-Button.jpg" style="margin-left:500px;margin-top:20%"></a>	
 {% block body %}
 
 	{% endblock %}
+
+<script src="/static/bootstrap/js/bootstrap.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script src="/static/js/ajax_like.js"></script>
   </body>
 </html>

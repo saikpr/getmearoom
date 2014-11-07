@@ -24,18 +24,18 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = ["localhost","10.9.11.224"]
+ALLOWED_HOSTS = ["localhost","*"]
 
 
 # Application definition
 
-INSTALLED_APPS = (
+INSTALLED_APPS = ('polls',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles','polls','portal','mysite',
+    'django.contrib.staticfiles','portal','mysite',
      	
 )
 
@@ -46,7 +46,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware','mysite.timezone.TimezoneMiddleware',
 )
 
 ROOT_URLCONF = 'mysite.urls'
@@ -54,6 +54,13 @@ ROOT_URLCONF = 'mysite.urls'
 LOGIN_URL='/login/'
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
+#email details
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'tanay.sharma.cse12@itbhu.ac.in'
+EMAIL_HOST_PASSWORD = 'superfast27794'
+EMAIL_PORT = 587
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
@@ -61,9 +68,9 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE':'django.db.backends.mysql',
-        'NAME':'project',
+        'NAME':'allocation',
         'USER':'root',
-        'PASSWORD':'pass',
+        'PASSWORD':'dbms2',
         'HOST':'127.0.0.1',
         'PORT':'3306',
     }
@@ -76,7 +83,7 @@ TEMPLATE_DIRS = (
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 

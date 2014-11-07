@@ -5,7 +5,11 @@ urlpatterns = patterns('',
 
     # Main web portal entrance.
     (r'^$', portal_main_page),
-	(r'^staff/$',staff_page),
+	(r'^staff/$',staff_page),(r'^warden/$',wardenProfile_page),(r'^staff_profile/$',staffProfile_page),
 (r'^complaint/$',complaint_page),
 (r'^suggestion/$',suggestion_page),
+(r'^verify/(?P<hash>\w+)',verify_page),
+(r'^preference/(?P<hash>\w+)',preference_page),
+(r'^pass_change/(?P<hash>\w+)',pass_change),
+
 )

@@ -14,6 +14,12 @@ li {
     display: inline;
     position: relative;
 }
+#logo{
+
+margin:0;
+position:absolute;
+
+}
 </style>
 {% endblock %}
 {% endblock %}
@@ -26,23 +32,93 @@ li {
 		<nav class="navbar navbar-fixed-top"  id="navbar" role="navigation" style="background-color:#FFF;border-bottom:2px solid #1975D1
 ">
 			  <div class="navbar-header">
-     				 <a class="navbar-brand" href="/portal/">Room Allocation</a><span class="navbar-text">|</span>	
-				<a id="staff" href="/portal/staff/" class="navbar-brand">Staff</a>   				
-					<span class="navbar-text">|</span>	
-				<a id="complaint" href="/portal/complaint/" class="navbar-brand">Complaint</a><span class="navbar-text">|</span>   <a id="complaint" href="/portal/suggestion/" class="navbar-brand">Suggestion</a>
-	
-     
-  </div>
+   				
+ <a  class="navbar-brand" href="/portal/">Room Allocation</a><span class="navbar-text">|</span>	
+			 
+</div>
+
+<div>
+      <ul class="nav navbar-nav">
+         <li  class="active"><a id="staff" href="/portal/staff/">Staff</a></li>
+         <li><a href="/portal/complaint/">Complaint</a></li>
+         <li><a href="/portal/suggestion/">Suggestion</a></li>
+       
+	 <li class="dropdown" >
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+               Profile
+               <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+               <li><a href="/portal/staff_profile">Staff</a></li>
+               <li><a href="/portal/warden">Warden</a></li>
+              
+            </ul>
+         </li>
+      </ul>
+   </div>
 				
-				<div class="pull-right"><a id="logout" href="/logout/" class="navbar-brand">Logout</a>
+				<div class="pull-right"><ul class="nav navbar-nav"><li><a id="logout" href="/logout/" >Logout</a></li></ul>
 				
 				</div>
 				
 	
 			{% block nav %}{% endblock %}			
-				</nav>  	
-		
+				</nav>
+
+
 </div>
   {% block content %}{% endblock %}
+<script>
+
+var timeout	= 10;
+var closetimer	= 0;
+var ddmenuitem	= 0;
+
+// open hidden layer
+function mopen(id)
+{
+	// cancel close timer
+	mcancelclosetime();
+
+	// close old layer
+	if(ddmenuitem) ddmenuitem.style.display = 'none';
+
+	// get new layer and show it
+	ddmenuitem = document.getElementById('list');
+	ddmenuitem.style.display = 'block';
+
+}
+// close showed layer
+function mclose()
+{
+	if(ddmenuitem) ddmenuitem.style.display = 'none';
+}
+
+// go close timer
+function mclosetime()
+{
+	closetimer = window.setTimeout(mclose, timeout);
+}
+
+// cancel close timer
+function mcancelclosetime()
+{
+	if(closetimer)
+	{
+		window.clearTimeout(closetimer);
+		closetimer = null;
+	}
+}
+document.onclick = mclose;
+
+
+
+</script>
+<script src="/static/bootstrap/js/bootstrap.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script src="/static/js/ajax_search.js"></script>
+<script src="/static/js/ajax_room.js"></script>
+<script src="/static/js/ajax_notify.js"></script>
 
 {% endblock %}

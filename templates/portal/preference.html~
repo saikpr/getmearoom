@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+
+{% block head %}
+
+{% endblock %}
+<link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.min.css" />
+
+</head>
+  <body>	
+{% block body %}
+
+<dic class="container-fluid">
+	<div class="row">
+		<div class="col-md-4 col-md-offset-1">
+<section style="border:1px solid #59ACFF
+;border-radius:5px;">
+		<div  id="back" style="padding:4%;background-color:#85C2FF
+
+">
+		Preference			
+	
+</div>
+    	
+     
+	<div style="padding:4%;">
+	<form action="/portal/preference/{{hash}}/" method="post">
+	   {% csrf_token %}
+	<div class="modal-body">
+       <div id="error">
+{{error}}
+</div>
+<div ><h4>Hostel Alloted</h4><br><p>{{hostel}}</p></div>	
+{{form}}
+	
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Proceed</button>
+      </div>
+</form>
+    </div>
+  </div>
+<div class="col-md-7">
+	<img id="Dhanrajgiri" style="display:none" src="{{link}}" height="450px" width="700px">	
+
+</div>
+</div>
+
+
+</div>
+
+
+	{% endblock %}
+  
+<script src="/static/bootstrap/js/bootstrap.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script> 
+$( "#hostel" ).change(function() {
+var hostel=document.getElementById('hostel').value;
+	if(hostel)
+	document.getElementById(hostel).style.display="block";  
+	else
+		document.getElementById('pref1').value=hostel;
+});
+
+
+</script>
+</body>
+</html>

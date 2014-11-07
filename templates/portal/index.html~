@@ -23,7 +23,10 @@ background: linear-gradient(to bottom,  rgba(239,239,239,1) 1%,rgba(252,252,252,
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#efefef', endColorstr='#fcfcfc',GradientType=0 ); /* IE6-9 */
 
 }
+#error{
+color:red;
 
+}
 #image{
 position:relative;
 
@@ -37,6 +40,17 @@ padding-right:40px;
 padding-left:40px;
 font-size:22px;
 text-align:center;
+
+}
+#room_no{
+
+position:absolute;
+    top:60px;
+   
+padding-right:10px;
+padding-left:10px;
+font-size:17px;
+text-align:left;
 
 }
 #imageBlock{
@@ -63,7 +77,30 @@ color:
 
 }
 #grab:hover{
-height:120%;
+font-size:120%;
+
+}
+
+#back{
+position:absolute;
+top:52px;
+margin-left:-55px;
+
+}
+#forward{
+position:absolute;
+top:52px;
+margin-left:800px;
+
+}
+#forward:hover{
+height:60px;
+width:60px;
+
+}
+#back:hover{
+height:60px;
+width:60px;
 
 }
 </style>
@@ -73,21 +110,45 @@ height:120%;
 
 
   {% block nav %}
- <div class="navbar-brand pull-right">Welcome, {{user}}</div>
+ <div class="navbar-brand pull-right">Welcome, {{user.first_name}}</div>
 {% endblock %}
 	
 {% block content %}
 <div class="container-fluid" style="padding:80px">
 	<div class="row">
-		<div class="col-md-offset-2">		
+			<div id="room_no">
+<p>Room</p>
+</div>		
+			<div id="room_no" style="top:60px;">
+<p id="user_room" style="font-family:Purisa;font-size:50px;color:#330099">{% if user.room_alloted %}				
+	<b>{{user.room_alloted}}</b>
+{% else %}
+	<b>NA</b>
+	{% endif %}
+		</p>
+</div>		
+		
+			<div class="col-md-offset-2">		
 			<div style="margin-left:auto;margin-right:auto">	
 				<div id="image" >
   				<img alt="" src="/static/hr.jpg" />
 				</div>	  					
-				<div id="text" >
-    					<p>No Notifications</p>
-    			
-  				</div>
+				<div>
+			
+				    					
+<span id="text"></span>
+ 					<span style="display:none" id="id"></span> 
+					<div id="error_msg" style="display:none" class="alert alert-danger alert-dismissable">
+   <button type="button" class="close" data-dismiss="alert" 
+      aria-hidden="true">
+      &times;
+   </button>
+  <span id="notify_error"></span>
+</div>	
+</div>
+<div><img  id="back" onclick="prev_notification()" width=50px height=50px src="/static/bArrow.png"></div>				
+<div ><img id="forward" onclick="next_notification()" width=50px height=50px src="/static/farrow.png"></div>
+		
 				
 			</div>
 
@@ -101,8 +162,10 @@ height:120%;
 				<div id="roomDetails">
 					<div>				
 					<label>Hostel:</label><span>
-						<select class="form-control">
-							<option>Dhanrajgiri</option>						
+						<select class="form-control" id="hostel">
+														
+						<option >{{hostel_name}}</option>	
+														
 						</select>		
 						</span>		
 					
@@ -113,30 +176,30 @@ height:120%;
 	<div class="row">
 		  <div class="col-md-10">
 			<div class="form-group">
-					<input type="text" class="form-control" placeholder="Search for availability by room no.">
+					<input id="search_room" type="text"   class="form-control" placeholder="Search for availability by room no.">
 			</div>
 		</div>				
 		<div class="col-md-2">
-<span><button style="margin-left:-20px;"class="btn  " type="submit"><i class="glyphicon glyphicon-search"></i></button>				
+<span><button id="search" style="margin-left:-20px;"class="btn" type="button"><i class="glyphicon glyphicon-search"></i></button>				
 				</span>
 
 		</div>
 	</div>
 
 	<div class="row">
-		<div class="col-md-12">
+		<div class="col-md-12" >
+			<p style="color:red;"id="search_result">{{search_result}}</p>		
 		</div>
 	</div>
-
 	<h4>Preferences</h4>
 	<hr>
-	<form>
+	<div id="error"></div>
 		<div class="row">
 		<div class="col-md-6 form-group">
 		<label>Preference #1:</label>
 		</div>
 		<div class="col-md-6 form-group">
-		<input class="form-control" placeholder="Room No.">		
+		<input type="text"  id="pref1" class="form-control" placeholder="Room No.">		
 		</div>
 
 	</div>
@@ -145,11 +208,11 @@ height:120%;
 		<label>Preference #2:</label>
 		</div>
 		<div class="col-md-6 form-group">
-		<input class="form-control" placeholder="Room No.">		
+		<input id="pref2" type="number" class="form-control" placeholder="Room No.">		
 		</div>
 	</div>
-	<button id="grab" type="submit" class="btn btn-default" >Grab It</button>
-	</form>
+	<button id="grab" type="button" class="btn btn-default" >Grab It</button>
+
 
 </div>		
 	</div>
@@ -159,7 +222,34 @@ height:120%;
 
 		<div class="col-md-7">
 			<div id="imageBlock">
-				<img alt="No Preview Available" src="/static/key.jpg" height=470px width=653px;/>			
+				<div id="myCarousel" class="carousel slide" style="height:470px">
+   <!-- Carousel indicators -->
+   <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+   </ol>   
+   <!-- Carousel items -->
+   <div class="carousel-inner" style="margin-left:12%;height:470px">
+      <div class="item active">
+         <img src={{hostel_link}} height=220px width=600px alt="First slide">
+         <div class="carousel-caption">This Caption 1</div>
+      </div>
+      <div class="item">
+         <img src={{hostel_link}} height=220px width=600px alt="Second slide">
+         <div class="carousel-caption">This Caption 2</div>
+      </div>
+      <div class="item">
+         <img src="/static/key.png"  height=220px width=600px alt="Third slide">
+         <div class="carousel-caption">This Caption 3</div>
+      </div>
+   </div>
+   <!-- Carousel nav -->
+   <a class="carousel-control left" href="#myCarousel" 
+      data-slide="prev">&lsaquo;</a>
+   <a class="carousel-control right" href="#myCarousel" 
+      data-slide="next">&rsaquo;</a>
+</div> 		
 			</div>	
 
 
@@ -172,7 +262,82 @@ height:120%;
 <footer>
     <span style="text-align:center">&copy; 2014,IIT BHU </span>
   </footer>
+   			<script>
+var i=0;
+var length= "{{name|length }}"
+var notifications=[];
+var sender=[];
+var sender_id=[];
+var notifications_id=[];
+{% for notification in notifications %}
+notifications.push("{{notifications}}");
+notifications_id.push("{{notification.roll_no_sender}}");
+{% endfor %}
+{% for sender in name %}
+sender.push("{{sender.first_name}}");
+sender_id.push("{{sender.roll_no}}")
+{% endfor %}
+
+var btn1 = document.createElement("BUTTON");
+	btn1.className="btn btn-default";
+	btn1.setAttribute("id","accept");
+	var t = document.createTextNode("Accept");
+	btn1.style.marginBottom="15px";	
+	btn1.style.marginRight="5px";	
+	btn1.style.borderColor="#009900";
+	btn1.appendChild(t);
+var btn2 = document.createElement("BUTTON");
+	btn2.className="btn btn-default";
+	btn2.setAttribute("id","reject");
+	var s = document.createTextNode("Reject");
+	btn2.style.marginBottom="15px";	
+	btn2.style.marginLeft="5px";	
+	btn2.style.borderColor="#B80000";	
+	btn2.appendChild(s);
+if(length==0)
+document.getElementById("text").innerHTML="No Notifications";
+else
+{var text=document.getElementById("text");
+text.innerHTML=sender[0]+" wants to be your roomie ";
+text.appendChild(btn1);
+text.appendChild(btn2);
+document.getElementById("id").innerHTML=sender_id[0];
+
+}
+function next_notification(){
+if(i<length-1)
+	{
+		i++;
+		document.getElementById("text").innerHTML=sender[i]+" wants to be your roomie ";	
+text.appendChild(btn1);
+text.appendChild(btn2);
+	document.getElementById("id").innerHTML=sender_id[i];
+
+	}
+	
+
+}
+function prev_notification(){
+if(i>0)
+	{
+		i--;
+		document.getElementById("text").innerHTML=sender[i]+" wants to be your roomie ";	
+text.appendChild(btn1);
+text.appendChild(btn2);
+	document.getElementById("id").innerHTML=sender_id[i];
+
+}
+	
+
+}
+
+
+
+
+</script> 
+
+
 </div>	
 
-
+ 
 {% endblock %}
