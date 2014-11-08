@@ -123,74 +123,73 @@ def verify_page(request,hash):
 		username=hash_temp.roll_no
 		email=hash_temp.email
 		password=hash_temp.password
-		if request.method == 'POST':
-       		# create a form instance and populate it with data from the request:
-	        	form = StudentForm(request.POST)
-        	# check whether it's valid:
-        		if form.is_valid():
-            			# process the data in form.cleaned_data as required
-            			# ...
-            			# redirect to a new URL:
-				firstname=form.cleaned_data["firstName"]
-				lastname=form.cleaned_data["lastName"]
-				gender=form.cleaned_data["gender"]
-				fathername=form.cleaned_data["fatherName"]
-				mothername=form.cleaned_data["motherName"]            		
-				address=form.cleaned_data["address"]
-				department=form.cleaned_data["department"]
-				course=form.cleaned_data["course"]
-				mobile=form.cleaned_data["mobile"]
-				year=form.cleaned_data["year"]
-				x=Student(roll_no=username,first_name=firstname,last_name=lastname,gender=gender,email=email,father_name=fathername,mother_name=mothername,address=address,contact_no=mobile)
-				if re.match("^[a-zA-Z\s]*$", firstname):				
-					return render(request, 'portal/form.html',{'form': form,'error':"Firstname should contain only characters and whitespace",'hash':hash})
-				if re.match("^[a-zA-Z\s]*$", lastname):				
-					return render(request, 'portal/form.html',{'form': form,'error':"Lastname should contain only characters and whitespace",'hash':hash})
-				if re.match("^[a-zA-Z\s]*$", mothername):				
-					return render(request, 'portal/form.html',{'form': form,'error':"Mothername should contain only characters and whitespace",'hash':hash})
-				if re.match("^[a-zA-Z\s]*$", fathername):				
-					return render(request, 'portal/form.html',{'form': form,'error':"Fathername should contain only characters and whitespace",'hash':hash})
-				if len(mobile)!=10 or not mobile.is_digit():
-					return render(request, 'portal/form.html',{'form': form,'error':"Invalid mobile number",'hash':hash})
-				
+	except:
+	    return render(request,'portal/failed_verify.html')
+	if request.method == 'POST':
+   		# create a form instance and populate it with data from the request:
+        	form = StudentForm(request.POST)
+    	# check whether it's valid:
+    		if form.is_valid():
+        			# process the data in form.cleaned_data as required
+        			# ...
+        			# redirect to a new URL:
+			firstname=form.cleaned_data["firstName"]
+			lastname=form.cleaned_data["lastName"]
+			gender=form.cleaned_data["gender"]
+			fathername=form.cleaned_data["fatherName"]
+			mothername=form.cleaned_data["motherName"]            		
+			address=form.cleaned_data["address"]
+			department=form.cleaned_data["department"]
+			course=form.cleaned_data["course"]
+			mobile=form.cleaned_data["mobile"]
+			year=form.cleaned_data["year"]
+			x=Student(roll_no=username,first_name=firstname,last_name=lastname,gender=gender,email=email,father_name=fathername,mother_name=mothername,address=address,contact_no=mobile)
+			if re.match("^[a-zA-Z\s]*$", firstname):				
+				return render(request, 'portal/form.html',{'form': form,'error':"Firstname should contain only characters and whitespace",'hash':hash})
+			if re.match("^[a-zA-Z\s]*$", lastname):				
+				return render(request, 'portal/form.html',{'form': form,'error':"Lastname should contain only characters and whitespace",'hash':hash})
+			if re.match("^[a-zA-Z\s]*$", mothername):				
+				return render(request, 'portal/form.html',{'form': form,'error':"Mothername should contain only characters and whitespace",'hash':hash})
+			if re.match("^[a-zA-Z\s]*$", fathername):				
+				return render(request, 'portal/form.html',{'form': form,'error':"Fathername should contain only characters and whitespace",'hash':hash})
+			if len(mobile)!=10 or not mobile.is_digit():
+				return render(request, 'portal/form.html',{'form': form,'error':"Invalid mobile number",'hash':hash})
+			
+			try:
+				x.full_clean()
+				x.save()
+				y=Batch(roll_no=Student.objects.get(roll_no=username),year=year,department=department)			
 				try:
-					x.full_clean()
-					x.save()
-					y=Batch(roll_no=Student.objects.get(roll_no=username),year=year,department=department)			
-					try:
-						y.full_clean()
-						y.save()
-						try:				
-							user=User.objects.create_user(username=username,password=password,email=email)
-							user.save()        
-							userLog=authenticate(username=username, password=password,email=email)
-							login(request,userLog)
-														
-							return HttpResponseRedirect('/portal/preference/'+hash)
-						
-						except:
-							return render(request,'portal/success.html')
-				
+					y.full_clean()
+					y.save()
+					try:				
+						user=User.objects.create_user(username=username,password=password,email=email)
+						user.save()        
+						userLog=authenticate(username=username, password=password,email=email)
+						login(request,userLog)
+						return HttpResponseRedirect('/portal/preference/'+hash)
 					
-					except ValidationError,e:
-							
-						return render(request, 'portal/form.html',{'form': form,'error':e.message_dict,'hash':hash})
-				except ValidationError,e:
-					#return render(request,'portal/success.html')		
-					return render(request, 'portal/form.html',{'form': form,'error':e.message_dict,'hash':hash})
+					except:
+						return render(request,'portal/success.html')
 			
 				
-				
+				except ValidationError,e:
+						
+					return render(request, 'portal/form.html',{'form': form,'error':e.message_dict,'hash':hash})
+			except ValidationError,e:
+				#return render(request,'portal/success.html')		
+				return render(request, 'portal/form.html',{'form': form,'error':e.message_dict,'hash':hash})
+		
+		
+			
 
     # if a GET (or any other method) we'll create a blank form
 			
-		     	
-		else:
-        		form = StudentForm()
-		return render(request, 'portal/form.html', {'form': form,'hash':hash})
-	except:
-	
-	    return render(request,'portal/failed_verify.html')	
+	     	
+	else:
+    		form = StudentForm()
+	return render(request, 'portal/form.html', {'form': form,'hash':hash})
+		
 
 
 
