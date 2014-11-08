@@ -377,34 +377,34 @@ def accept_page(request):
     context = RequestContext(request)
     roll = None
     data=None
-        if request.method == 'GET':
-            roll = request.GET['roll']
-            data=request.GET['data_room']
-            try:
-                if '1 Available' in data:   
-                    student=Student.objects.get(roll_no=roll)
-                    student_owner=Student.objects.get(roll_no=request.user) 
-                    if student.room_alloted==0 :
-                        student.room_alloted=student_owner.room_alloted
-                        student.save()
-                        notification=Notifications.objects.get(roll_no_reciever=request.user,roll_no_sender=roll)
-                        notification.delete()   
-                        return HttpResponse("1")
+    if request.method == 'GET':
+        roll = request.GET['roll']
+        data=request.GET['data_room']
+        try:
+            if '1 Available' in data:   
+                student=Student.objects.get(roll_no=roll)
+                student_owner=Student.objects.get(roll_no=request.user) 
+                if student.room_alloted==0 :
+                    student.room_alloted=student_owner.room_alloted
+                    student.save()
+                    notification=Notifications.objects.get(roll_no_reciever=request.user,roll_no_sender=roll)
+                    notification.delete()   
+                    return HttpResponse("1")
 
-            
-                    else:
-                        notification=Notifications.objects.get(roll_no_reciever=request.user,roll_no_sender=roll)
-                        notification.delete()   
-                        
-                        return HttpResponse("He already occupied the room")
+        
                 else:
                     notification=Notifications.objects.get(roll_no_reciever=request.user,roll_no_sender=roll)
                     notification.delete()   
+                    
+                    return HttpResponse("He already occupied the room")
+            else:
+                notification=Notifications.objects.get(roll_no_reciever=request.user,roll_no_sender=roll)
+                notification.delete()   
 
-                    return HttpResponse("You have already accepted someone's request")
-            
-            except:
-                return HttpResponse("Something went wrong")
+                return HttpResponse("You have already accepted someone's request")
+        
+        except:
+            return HttpResponse("Something went wrong")
 
 def reject_page(request):
     context = RequestContext(request)
