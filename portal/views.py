@@ -142,6 +142,16 @@ def verify_page(request,hash):
 				mobile=form.cleaned_data["mobile"]
 				year=form.cleaned_data["year"]
 				x=Student(roll_no=username,first_name=firstname,last_name=lastname,gender=gender,email=email,father_name=fathername,mother_name=mothername,address=address,contact_no=mobile)
+				if re.match("^[a-zA-Z\s]*$", firstname):				
+					return render(request, 'portal/form.html',{'form': form,'error':"Firstname should contain only characters and whitespace",'hash':hash})
+				if re.match("^[a-zA-Z\s]*$", lastname):				
+					return render(request, 'portal/form.html',{'form': form,'error':"Lastname should contain only characters and whitespace",'hash':hash})
+				if re.match("^[a-zA-Z\s]*$", mothername):				
+					return render(request, 'portal/form.html',{'form': form,'error':"Mothername should contain only characters and whitespace",'hash':hash})
+				if re.match("^[a-zA-Z\s]*$", fathername):				
+					return render(request, 'portal/form.html',{'form': form,'error':"Fathername should contain only characters and whitespace",'hash':hash})
+				if len(mobile)!=10 or not mobile.is_digit():
+					return render(request, 'portal/form.html',{'form': form,'error':"Invalid mobile number",'hash':hash})
 				
 				try:
 					x.full_clean()
