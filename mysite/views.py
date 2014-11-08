@@ -23,6 +23,12 @@ from recaptcha.client import captcha
 #from portal.forms import Registration_Form
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
+def has_special(pw):
+    'Password must contain a special character'
+    return len(set(string.punctuation).intersection(pw)) > 0
+def has_numeric(pw):
+    'Password must contain a digit'
+    return len(set(string.digits).intersection(pw)) > 0
 def main_page(request):
     context = RequestContext(request)   
     try:
