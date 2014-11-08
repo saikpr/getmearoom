@@ -10,7 +10,7 @@ from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
 from django.contrib.auth import login,authenticate
 from portal.forms import *
-import string
+import string,re
 @login_required
 def portal_main_page(request):
     """
