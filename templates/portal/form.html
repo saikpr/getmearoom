@@ -29,7 +29,7 @@ padding:5%;
 				<form class="form-group" action="/portal/verify/{{hash}}" method="post">	
 					 {% csrf_token %}
    			<div id="errors">
-
+{{error}}
 </div>	
 
 {{ form }}
