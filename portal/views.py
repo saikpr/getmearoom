@@ -42,7 +42,7 @@ def portal_main_page(request):
     except Hostel.DoesNotExist:
         pass
 
-        return render(request,'portal/index.html',context_dict)
+    return render(request,'portal/index.html',context_dict)
 
 
 @login_required
