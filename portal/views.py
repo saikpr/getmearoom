@@ -152,7 +152,7 @@ def verify_page(request,hash):
                     return render(request, 'portal/form.html',{'form': form,'error':"Mothername should contain only characters and whitespace",'hash':hash})
                 if not re.match("^[a-zA-Z\s]*$", fathername):               
                     return render(request, 'portal/form.html',{'form': form,'error':"Fathername should contain only characters and whitespace",'hash':hash})
-                if len(mobile)!=10 or not mobile.is_digit():
+                if len(mobile)!=10 or not mobile.isdigit():
                     return render(request, 'portal/form.html',{'form': form,'error':"Invalid mobile number",'hash':hash})
                 
                 try:
