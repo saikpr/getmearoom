@@ -215,17 +215,17 @@ def preference_page(request,hash):
             form = PreferenceForm(request.POST)
             # check whether it's valid:
             if form.is_valid():
-            pref1=form.cleaned_data['pref1']
-            pref2=form.cleaned_data['pref2']
+                pref1=form.cleaned_data['pref1']
+                pref2=form.cleaned_data['pref2']
             
             
                                 
-            x=Preference(pref1=pref1,pref2=pref2,roll_no=Student.objects.get(roll_no=request.user),hostel_name=hostel)
-            x.full_clean()
-            x.save()
-            z=Verification.objects.get(hash_value=hash)
-            z.delete()
-            return HttpResponseRedirect('/portal/')
+                x=Preference(pref1=pref1,pref2=pref2,roll_no=Student.objects.get(roll_no=request.user),hostel_name=hostel)
+                x.full_clean()
+                x.save()
+                z=Verification.objects.get(hash_value=hash)
+                z.delete()
+                return HttpResponseRedirect('/portal/')
                         
             
             #   return render(request, 'portal/preference.html', {'form': form,'hash':hash,'error':"error"})
