@@ -73,8 +73,14 @@ def signup_page(request):
                     return render_to_response('login.html',c )
                 except User.DoesNotExist:
                     pass
-                if len(Pass)<=8 and not has_special(Pass) and not has_numeric(Pass):
+                if not re.match("[\d]*\dEN\d[\d]*", roll):
+                    context_dict["error"]="Wrong Roll no"
+                    c = RequestContext(request, context_dict)           
+                    return render_to_response('login.html',c )
+                if len(Pass)<=8 and not has_special(Pass) and not has_numeric(Pass) :
                     context_dict["error"]="Password should be minimum 8 characters long,a special character and a number"
+                    c = RequestContext(request, context_dict)           
+                    return render_to_response('login.html',c )
                 try:
                     response = captcha.submit(request.POST.get('recaptcha_challenge_field'),request.POST.get('recaptcha_response_field'),'6LdEWv0SAAAAACGFFj_XcbCnR-S0zsNwJDtjb6GF',request.META['REMOTE_ADDR'],)
                                 
