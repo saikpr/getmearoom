@@ -187,7 +187,7 @@ def verify_page(request,hash):
             
             
     else:
-            form = StudentForm()
+        form = StudentForm()
     return render(request, 'portal/form.html', {'form': form,'hash':hash})
         
 
@@ -244,29 +244,30 @@ def pass_change(request,hash):
         username=hash_temp.roll_no
         email=hash_temp.email
         password=hash_temp.password
-        if request.method == 'POST':
-                form = PassRecoveryForm(request.POST)
-            if form.is_valid():
-                Pass=form.cleaned_data["password"]
-                PassC=form.cleaned_data["passwordC"]
-                if Pass==PassC:
-                    try:
-                        x=User.objects.get(username=username)
-                        x.set_password(Pass)
-                        x.save()
-                        hash_temp.delete()
-                        return render(request, 'portal/pass_success.html')
-                    except:
-                        return render(request, 'portal/pass_recovery.html', {'form': form,'hash':hash,'error':"Error in connection"})
-
-                else:
-                    return render(request, 'portal/pass_recovery.html', {'form': form,'hash':hash,'error':"Password Doesnot match"})
-        else:
-                form = PassRecoveryForm()
-        return render(request, 'portal/pass_recovery.html', {'form': form,'hash':hash})
     except:
     
         return render(request,'portal/failed_verify.html')
+    if request.method == 'POST':
+        form = PassRecoveryForm(request.POST)
+        if form.is_valid():
+            Pass=form.cleaned_data["password"]
+            PassC=form.cleaned_data["passwordC"]
+            if Pass==PassC:
+                try:
+                    x=User.objects.get(username=username)
+                    x.set_password(Pass)
+                    x.save()
+                    hash_temp.delete()
+                    return render(request, 'portal/pass_success.html')
+                except:
+                    return render(request, 'portal/pass_recovery.html', {'form': form,'hash':hash,'error':"Error in connection"})
+
+            else:
+                return render(request, 'portal/pass_recovery.html', {'form': form,'hash':hash,'error':"Password Doesnot match"})
+    else:
+        form = PassRecoveryForm()
+    return render(request, 'portal/pass_recovery.html', {'form': form,'hash':hash})
+
 
 
 
