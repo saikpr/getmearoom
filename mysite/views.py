@@ -306,7 +306,7 @@ def room_page(request):
             #if now<room_start:
             #   return HttpResponse("Allotement is scheduled for 6th November at 10am")
             #elif now<room_start_15:
-            if int(pref1)>0 and int(pref2)>0 and int(pref1)<50 and int(pref2)<50:
+            if int(pref1)>0 and int(pref2)>0 and int(pref1)<200 and int(pref2)<200:
 
                 if '2 Available' in pref1_data:
 
