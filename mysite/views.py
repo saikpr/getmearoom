@@ -18,7 +18,7 @@ import datetime
 import json
 from django.forms.models import model_to_dict
 from django.shortcuts import render
-import string
+import string,re
 from recaptcha.client import captcha  
 #from portal.forms import Registration_Form
 from django.core.validators import validate_email
@@ -67,6 +67,8 @@ def signup_page(request):
                     return render_to_response('login.html',c )
                 except User.DoesNotExist:
                     pass
+                if len(Pass)<=8 and not has_special(Pass) and not has_numeric(Pass):
+                    context_dict["error"]="Password should be minimum 8 characters long,a special character and a number"
                 try:
                     response = captcha.submit(request.POST.get('recaptcha_challenge_field'),request.POST.get('recaptcha_response_field'),'6LdEWv0SAAAAACGFFj_XcbCnR-S0zsNwJDtjb6GF',request.META['REMOTE_ADDR'],)
                                 
