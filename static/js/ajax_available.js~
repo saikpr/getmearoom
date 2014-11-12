@@ -1,0 +1,36 @@
+ $(document).ready(function(){
+
+var ajax_call = function() {
+  //your jQuery ajax code
+var room=[];
+
+    var hostel;
+    hostel = $("#hostel").val();
+   
+     $.get('/available/', {search_hostel: hostel}, function(data){
+		 var data = eval(data); // this will convert your json string to a javascript object
+
+			for (var key in data) 
+ 	 	 		 {
+					room[key]=1;
+				}        
+			for(var i=1;i<total_room;i++)
+				{
+				if(room[i]!=1)
+					{
+					var option="<option>"+room[i]+"</option>";
+					$("#available").append(option);					
+					}
+
+			
+				}		
+
+
+           });
+};
+
+var interval = 50; // where X is your every X minutes
+
+setInterval(ajax_call, interval);
+
+});

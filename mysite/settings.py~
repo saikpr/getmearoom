@@ -24,7 +24,7 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = ["localhost","10.9.11.224"]
+ALLOWED_HOSTS = ["localhost","*"]
 
 
 # Application definition
@@ -70,7 +70,7 @@ DATABASES = {
         'ENGINE':'django.db.backends.mysql',
         'NAME':'allocation',
         'USER':'root',
-        'PASSWORD':'pass',
+        'PASSWORD':'dbms2',
         'HOST':'127.0.0.1',
         'PORT':'3306',
     }
@@ -83,7 +83,7 @@ TEMPLATE_DIRS = (
 
 LANGUAGE_CODE = 'en-us'
 
-
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 

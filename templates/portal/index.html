@@ -136,7 +136,7 @@ width:60px;
 				<div>
 			
 				    					
-<span id="text"></span>
+<span id="text">Your new roommate is {{notification}}({{mobile}})</span>
  					<span style="display:none" id="id"></span> 
 					<div id="error_msg" style="display:none" class="alert alert-danger alert-dismissable">
    <button type="button" class="close" data-dismiss="alert" 
@@ -174,16 +174,16 @@ width:60px;
 					<br>
 				
 	<div class="row">
-		  <div class="col-md-10">
+		  <div class="col-md-12">
 			<div class="form-group">
-					<input id="search_room" type="text"   class="form-control" placeholder="Search for availability by room no.">
+					<select class="form-control" id="available">
+							{% for i in loop_times%}
+        <option style="color:green"; id={{i}} value={{i}}>{{i}} Available</option>
+{%endfor%}
+					</select>
 			</div>
-		</div>				
-		<div class="col-md-2">
-<span><button id="search" style="margin-left:-20px;"class="btn" type="button"><i class="glyphicon glyphicon-search"></i></button>				
-				</span>
-
-		</div>
+				  </div>				
+		
 	</div>
 
 	<div class="row">
@@ -193,28 +193,21 @@ width:60px;
 	</div>
 	<h4>Preferences</h4>
 	<hr>
-	<div id="error"></div>
-		<div class="row">
-		<div class="col-md-6 form-group">
-		<label>Preference #1:</label>
-		</div>
-		<div class="col-md-6 form-group">
-		<input type="text"  id="pref1" class="form-control" placeholder="Room No.">		
-		</div>
+			<div id="error"></div>
+				<div class="row">
+					<div class="col-md-6 form-group">
+						<label>Room No.:</label>
+					</div>
+					<div class="col-md-6 form-group">
+						<input type="text"  id="pref1" class="form-control" placeholder="Room No.">		
+					</div>
 
-	</div>
-	<div class="row">	
-		<div class="col-md-6 form-group">
-		<label>Preference #2:</label>
-		</div>
-		<div class="col-md-6 form-group">
-		<input id="pref2" type="number" class="form-control" placeholder="Room No.">		
-		</div>
-	</div>
-	<button id="grab" type="button" class="btn btn-default" >Grab It</button>
+				</div>
+			
+				<button id="grab" type="button" class="btn btn-default" >Grab It</button>
 
 
-</div>		
+	</div>		
 	</div>
 
 			
@@ -258,16 +251,21 @@ width:60px;
 	</div>
 
 
+</div>	
 
 <footer>
     <span style="text-align:center">&copy; 2014,IIT BHU </span>
   </footer>
    			<script>
+ 
 var i=0;
-var length= "{{name|length }}"
+var length= "{{name|length }}";
 var notifications=[];
 var sender=[];
 var sender_id=[];
+//$('<option>').val("1").text('Available').appendTo('#available');
+
+var total_room="{{room}}";
 var notifications_id=[];
 {% for notification in notifications %}
 notifications.push("{{notifications}}");
@@ -277,7 +275,7 @@ notifications_id.push("{{notification.roll_no_sender}}");
 sender.push("{{sender.first_name}}");
 sender_id.push("{{sender.roll_no}}")
 {% endfor %}
-
+/*
 var btn1 = document.createElement("BUTTON");
 	btn1.className="btn btn-default";
 	btn1.setAttribute("id","accept");
@@ -327,17 +325,34 @@ text.appendChild(btn2);
 	document.getElementById("id").innerHTML=sender_id[i];
 
 }
-	
+	*/
 
+
+window.onload = function() {
+  //your jQuery ajax code
+var room=[];
+var roll_no;
+ //roll_no=$("#id").text();
+    var hostel;
+    hostel = $("#hostel").val();
+   
+     $.get('/available/', {search_hostel: hostel}, function(data){
+		//var hello = JSON.parse(data); // this will convert your json string to a javascript object
+var json=$.parseJSON(data);
+//$('#error').html(json.length);
+//
+for (x in json){
+$("#"+String(json[x].room_no)).html(String(json[x].room_no)+" Sorry!,Its Gone!");
+$("#"+String(json[x].room_no)).css('color', 'red');
 }
-
+ });
+};
 
 
 
 </script> 
 
 
-</div>	
 
  
 {% endblock %}

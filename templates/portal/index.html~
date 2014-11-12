@@ -174,16 +174,16 @@ width:60px;
 					<br>
 				
 	<div class="row">
-		  <div class="col-md-10">
+		  <div class="col-md-12">
 			<div class="form-group">
-					<input id="search_room" type="text"   class="form-control" placeholder="Search for availability by room no.">
+					<select class="form-control" id="available">
+														
+							
+														
+						</select>
 			</div>
 		</div>				
-		<div class="col-md-2">
-<span><button id="search" style="margin-left:-20px;"class="btn" type="button"><i class="glyphicon glyphicon-search"></i></button>				
-				</span>
-
-		</div>
+		
 	</div>
 
 	<div class="row">
@@ -232,15 +232,15 @@ width:60px;
    <!-- Carousel items -->
    <div class="carousel-inner" style="margin-left:12%;height:470px">
       <div class="item active">
-         <img src={{hostel_link}} height=220px width=600px alt="First slide">
+         <img src={{hostel_link}} height=220px width=500px alt="First slide">
          <div class="carousel-caption">This Caption 1</div>
       </div>
       <div class="item">
-         <img src={{hostel_link}} height=220px width=600px alt="Second slide">
+         <img src={{hostel_link}} height=220px width=500px alt="Second slide">
          <div class="carousel-caption">This Caption 2</div>
       </div>
       <div class="item">
-         <img src="/static/key.png"  height=220px width=600px alt="Third slide">
+         <img src="/static/key.png"  height=220px width=500px alt="Third slide">
          <div class="carousel-caption">This Caption 3</div>
       </div>
    </div>
@@ -264,10 +264,12 @@ width:60px;
   </footer>
    			<script>
 var i=0;
-var length= "{{name|length }}"
+var length= "{{name|length }}";
 var notifications=[];
 var sender=[];
 var sender_id=[];
+var room=[];
+var total_room="{{room}}";
 var notifications_id=[];
 {% for notification in notifications %}
 notifications.push("{{notifications}}");
@@ -331,6 +333,38 @@ text.appendChild(btn2);
 
 }
 
+var ajax_call = function() {
+  //your jQuery ajax code
+
+
+    var hostel;
+    hostel = $("#hostel").val();
+   
+     $.get('/available/', {search_hostel: hostel}, function(data){
+		 var data = eval(data); // this will convert your json string to a javascript object
+
+			for (var key in data) {
+ 	 	 		 {
+					room[key]=1;
+				}        
+			for(var i=1;i<total_room;i++)
+				{
+				if(room[i]!=1)
+					{
+					var option="<option>"+room[i]+"</option>";
+					$("#available").append(option);					
+					}
+
+			
+				}		
+
+
+           });
+};
+
+var interval = 50; // where X is your every X minutes
+
+setInterval(ajax_call, interval);
 
 
 

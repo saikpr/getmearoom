@@ -9,7 +9,7 @@ urlpatterns = patterns('',
 (r'^logout/$',logout_page),
 #signup
 (r'^signup/$',signup_page),
-url(r'^myadmin/', include(admin_site.urls))
+url(r'^myadmin/', include(admin_site.urls)),
 #web portal
 (r'^portal/',include('portal.urls')),
  # Serve static content.

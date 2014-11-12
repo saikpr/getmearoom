@@ -23,6 +23,9 @@ class NotificationsAdmin(admin.ModelAdmin):
 class PrefAdmin(admin.ModelAdmin):
     # ...
     list_display = ('roll_no', 'pref1','pref2','hostel_name')
+class RoomAdmin(admin.ModelAdmin):
+    # ...
+    list_display = ('room_no','roll_no_1', 'roll_no_2')
 class MyAdminSite(AdminSite):
     site_header = 'New Administration'
 admin_site = MyAdminSite(name='myadmin')
@@ -37,3 +40,4 @@ admin.site.register(Notifications,NotificationsAdmin)
 admin.site.register(Student,StudentAdmin)
 admin.site.register(Preference,PrefAdmin)
 admin.site.register(Verification)
+admin.site.register(Rooms,RoomAdmin)

@@ -26,5 +26,6 @@ url(r'^search/$',search_page),
 url(r'^room/$',room_page),
 url(r'^get_room/$',get_room),
 url(r'^reject/$',reject_page),
+url(r'^available/$',available_page),
 url(r'^pass_recovery/$',pass_recovery),
 )

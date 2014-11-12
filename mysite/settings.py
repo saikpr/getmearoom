@@ -70,7 +70,7 @@ DATABASES = {
         'ENGINE':'django.db.backends.mysql',
         'NAME':'allocation',
         'USER':'root',
-        'PASSWORD':'dbms2',
+        'PASSWORD':'pass',
         'HOST':'127.0.0.1',
         'PORT':'3306',
     }
