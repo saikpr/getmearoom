@@ -441,5 +441,5 @@ def available_page(request):
 			return HttpResponse(json.dumps(lm))
 		except:
 			#print "wtf"
-			return HttpResponse("What the fuck")
+			return HttpResponse("Something went wrong")
 
