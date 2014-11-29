@@ -4,6 +4,7 @@ var ajax_call = function() {
   //your jQuery ajax code
 var room=[];
 var roll_no;
+
  //roll_no=$("#id").text();
     var hostel;
     hostel = $("#hostel").val();
@@ -14,8 +15,14 @@ var json=$.parseJSON(data);
 //$('#error').html(json.length);
 //
 for (x in json){
-$("#"+String(json[x].room_no)).html(String(json[x].room_no)+" Sorry!,Its Gone!");
-$("#"+String(json[x].room_no)).css('color', 'red');
+	var index=String(json[x].room_no);
+if(room[index]!=1)
+	{room[index]=1;
+//$("#"+String(json[x].room_no)).html(String(json[x].room_no)+" Sorry!,Its Gone!");
+//$("#"+String(json[x].room_no)).css('color', 'red');
+$("#"+String(json[x].room_no)).hide();
+}
+
 
 }
 /*$.json.each(function(index, element) {
@@ -46,7 +53,7 @@ $("#"+String(json[x].room_no)).css('color', 'red');
            });
 };
 
-var interval = 4000; // where X is your every X minutes
+var interval = 2000; // where X is your every X minutes
 
 setInterval(ajax_call, interval);
 

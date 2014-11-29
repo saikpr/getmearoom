@@ -18,6 +18,15 @@ def portal_main_page(request):
 	If users are authenticated, direct them to the main page. Otherwise, take
 		them to the login page.
 	"""
+    #request.session["password"]=request.user.password;
+	try:
+		pass_check=User.objects.get(username=request.user)
+		if pass_check.password!=request.user.password:
+			logout(request)
+			return HttpResponseRedirect('/')
+	except:
+		pass
+
 	name=[]
 	context = RequestContext(request)
 	try:
@@ -39,13 +48,20 @@ def portal_main_page(request):
 			print notifications.roll_no_1
 			if notifications.roll_no_1==str(request.user):
 				roomie=Student.objects.get(roll_no=notifications.roll_no_2)
-				context_dict['notification']=roomie.first_name+" "+roomie.last_name;
-				context_dict['mobile']=roomie.contact_no;
+				if roomie.roll_no=="0EN0":
+					context_dict['notification']="No notifications" 
+				else:	
+					context_dict['notification']="Your new roommate is "+roomie.first_name+" "+roomie.last_name+"("+roomie.contact_no+")";
+					context_dict['mobile']=roomie.contact_no;
 			else:
 				roomie=Student.objects.get(roll_no=notifications.roll_no_1)
-				context_dict['notification']=roomie.first_name+" "+roomie.last_name;
-				context_dict['mobile']=roomie.contact_no;
-		except Notifications.DoesNotExist:
+				if roomie.roll_no=="0EN0":
+					context_dict['notification']="No notifications" 
+				else:
+
+					context_dict['notification']="Your new roommate is "+roomie.first_name+" "+roomie.last_name+"("+roomie.contact_no+")";
+					context_dict['mobile']=roomie.contact_no;
+		except:
 			context_dict['notification']="No notifications"        
 			
 	except Hostel.DoesNotExist:
@@ -56,16 +72,41 @@ def portal_main_page(request):
 
 @login_required
 def staff_page(request):
+	try:
+		pass_check=User.objects.get(username=request.user)
+		if pass_check.password!=request.user.password:
+			logout(request)
+			return HttpResponseRedirect('/')
+	except:
+		pass
+
 	user1=Student.objects.get(roll_no=request.user)
 	user=user1.first_name
 	return render_to_response('portal/staff.html',{'user':user})
 @login_required
 def wardenProfile_page(request):
+	try:
+		pass_check=User.objects.get(username=request.user)
+		if pass_check.password!=request.user.password:
+			logout(request)
+			return HttpResponseRedirect('/')
+	except:
+		pass
+
+
 	user1=Student.objects.get(roll_no=request.user)
 	user=user1.first_name   
 	return render_to_response('portal/wardenProfile.html',{'user':user})
 @login_required
 def staffProfile_page(request):
+	try:
+		pass_check=User.objects.get(username=request.user)
+		if pass_check.password!=request.user.password:
+			logout(request)
+			return HttpResponseRedirect('/')
+	except:
+		pass
+
 	user1=Student.objects.get(roll_no=request.user)
 	user=user1.first_name   
 	return render_to_response('portal/staffProfile.html',{'user':user})
@@ -73,6 +114,14 @@ def staffProfile_page(request):
 
 @login_required
 def complaint_page(request):
+	try:
+		pass_check=User.objects.get(username=request.user)
+		if pass_check.password!=request.user.password:
+			logout(request)
+			return HttpResponseRedirect('/')
+	except:
+		pass
+
 	user1=Student.objects.get(roll_no=request.user)
 	user=user1.first_name   
 	complaints=Complaints.objects.all().order_by('-date_time').select_related()
@@ -98,6 +147,14 @@ def complaint_page(request):
 
 @login_required
 def suggestion_page(request):
+	try:
+		pass_check=User.objects.get(username=request.user)
+		if pass_check.password!=request.user.password:
+			logout(request)
+			return HttpResponseRedirect('/')
+	except:
+		pass
+
 	user1=Student.objects.get(roll_no=request.user)
 	user=user1.first_name   
 	suggestion=Suggestions.objects.all().order_by('-date_time').select_related()
@@ -126,7 +183,6 @@ def suggestion_page(request):
 	
 		
 def verify_page(request,hash):
-	
 	try:
 		hash_temp=Verification.objects.get(hash_value=hash)
 		username=hash_temp.roll_no
@@ -206,6 +262,14 @@ def verify_page(request,hash):
 
 
 def preference_page(request,hash):
+	try:
+		pass_check=User.objects.get(username=request.user)
+		if pass_check.password!=request.user.password:
+			logout(request)
+			return HttpResponseRedirect('/')
+	except:
+		pass
+
 	hostel=""   
 	link=""
 	try:
@@ -251,6 +315,7 @@ def preference_page(request,hash):
 	return render(request, 'portal/preference.html', {'form': form,'hash':hash,'hostel':hostel,'link':link})
 
 def pass_change(request,hash):
+	
 	try:
 		hash_temp=Verification.objects.get(hash_value=hash)
 		username=hash_temp.roll_no

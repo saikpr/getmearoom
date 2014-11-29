@@ -50,11 +50,23 @@ background-color:#FFF;
   border: 5px solid #eee;
   box-shadow: 0 3px 2px rgba(0, 0, 0, 0.3);  
 }
-.image-text{
 
 
-
-
+ @font-face {
+    font-family: tag_line_new;
+    src: url(/static/fonts/KaushanScript-Regular.otf);
+}
+@font-face {
+    font-family: tag_line_newf;
+    src: url(/static/fonts/Folktale.ttf);
+}
+@font-face {
+    font-family: tag_line_newff;
+    src: url(/static/fonts/Going Rogue.otf);
+}
+@font-face {
+    font-family: tag_line_newfff;
+    src: url(/static/fonts/always forever.ttf);
 }
 #link{
 cursor:pointer;}
@@ -219,21 +231,22 @@ cursor:pointer;}
 <hr>
 <div class="row" style="margin:4%">
 				<div class="col-md-12">		
-		<section  style="border:1px solid #59ACFF
-;border-radius:5px;">
-		<div  id="back" style="padding:4%;background-color:#85C2FF
-
-">
+		<div style="border:1px solid #59ACFF;border-radius:5px;height:150px">
+		<div  id="back" style="padding:4%;background-color:#85C2FF">
 		New User??			
 		</div>
-  <p>Lets sign you Up!!!</p>
-<div class="pull-right"><button class="btn btn-primary" onclick="signUp_open()"id="signUp" >Signup</button>
-</div>	
+  <div >
+      <h4 style="font-family:tag_line_newf;font-size:36px">Lets sign Up!!!</h4>
+<div style="margin-left:35%"><button class="btn btn-primary" onclick="signUp_open()"id="signUp" >Signup</button>
+  </div>
+
+
+  </div>
  
 
 	
 
-</section>
+</div>
 	</div>
 	</div>	
 

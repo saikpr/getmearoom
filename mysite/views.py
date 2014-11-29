@@ -207,6 +207,8 @@ def pass_recovery(request):
 
 
 def search_page(request):
+	
+
 	context = RequestContext(request)
 	hostel = None
 	room=None
@@ -265,6 +267,8 @@ def search_page(request):
 	return HttpResponse("Room does not exist")
 
 def room_page(request):
+	
+
 	context = RequestContext(request)
 	pref1 = None
 	pref2=None
@@ -400,6 +404,7 @@ def accept_page(request):
 			return HttpResponse("Something went wrong")
 
 def reject_page(request):
+	
 	context = RequestContext(request)
 	roll = None
 	if request.method == 'GET':
@@ -412,10 +417,14 @@ def reject_page(request):
 		except:
 			return HttpResponse("Something went wrong.Try again")
 def get_room(request):
+	
+
 	student=Student.objects.get(roll_no=request.user)
 	room=student.room_alloted
 	return HttpResponse(room)   
 def available_page(request):
+	
+	
 	hostel=""
 	if request.method == 'GET':
 		try:
